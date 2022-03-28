@@ -1,0 +1,53 @@
+.card1 {
+  border: 2px solid blue;
+  display: flex;
+  flex-direction: column;
+  column-gap: 10px;
+}
+
+.contents1 {
+  border: none;
+}
+
+.image1 {
+  margin-top: 50px;
+  /* border: 2px solid black; */
+  width: 500px;
+  border-radius: 50%;
+}
+
+.image1 img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.contents1 h1 {
+  font-size: 50px;
+  text-align: center;
+  margin: 0px;
+}
+
+.description1 {
+  border: none;
+  margin: 0px;
+}
+
+.description1 p {
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.readmore1 {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin: 30px;
+}
+
+.readmore1 button {
+  padding: 10px;
+  font-weight: bolder;
+  border-radius: 15px;
+  cursor: pointer;
+}

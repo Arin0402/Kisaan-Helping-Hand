@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainborder{
+    /* height: 100vh; */
+    border: 10px solid rgb(224, 140, 84);
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 10px;
+
+}
+
+.heading{
+    /* border: 2px solid black; */
+    height: 100px;
+    text-align: center;
+}
+
+.block1{
+    /* border: 2px solid red; */
+    height: 200px;
+    padding-left: 5px;
+    padding-right: 5px ;
+}
+
+.block1 h5{
+    margin: 5px;
+}
+
+.listblock{
+    /* border: 2px solid black; */
+    /* margin-left: 20px; */
+    margin-right: 0px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.listblock h4{
+    /* border: 1px solid red; */
+    height: 30px;
+
+
+}
+
+.listblock img{
+    height: 250px;
+    width: 300px;
+}
+
+.lists ul li{
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+.imagesblock{
+    display: flex;
+    height: 200px;
+    /* border: 2px solid black; */
+    justify-content: space-between;
+    padding: 10px;
+}
+.imagesblock img{
+    /* margin: auto; */
+    margin: 5px;
+}
+
+.imageandtable{
+    display: flex;
+    flex-direction: row;
+    height: 330px;
+    /* border: 2px solid red; */
+}
+
+.imageandtable img{
+    height: 300px ;
+    width: 300px;
+    margin: 10px;
+}
+
+/* css code for table creation  */
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    height: 300px;
+    margin-left:90px ;
+    margin-top:10px ;
+    margin-right: 10px;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }

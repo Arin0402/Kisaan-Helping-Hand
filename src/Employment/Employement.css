@@ -1,0 +1,15 @@
+.emp_left {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 40px;
+}
+.emp_left div {
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.emp_left h3 {
+  margin-right: 10px;
+}

@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main{
+    border: 2px solid red;
+    /* height: 100vh; */
+    background-color: rgb(61, 228, 125);
+}
+.heading{
+    margin-top: 20px;
+    font-size: 40px;
+    margin-bottom: 0px;
+}
+
+.description{
+    border: 2px solid rgb(140, 226, 238);
+    margin: 40px 40px 0 40px;
+    padding: 20px;
+    background-color: white;
+}
+.description p{
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+
+}
+.description h2 {
+    text-align: center;
+}
+
+.subdesc{
+    display: flex;
+
+}
+
+
+.howtoavail h2{
+    text-align: center;
+}
+
+.howtoavail{
+    border: 2px solid rgb(140, 226, 238);
+    margin: 10px 40px 0 40px;
+    padding: 20px;
+    background-color: white;
+}   
+
+.howtoavail p{
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+
+}
+
+.benefitslist{
+    border: 2px solid rgb(140, 226, 238);
+    margin: 10px 40px 0 40px;
+    padding: 20px;
+    background-color: white;
+
+
+
+}
+
+.benefitslist h2{
+    text-align: center;
+}
+.benefitslist ul li {
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.eligibility{
+    border: 2px solid rgb(140, 226, 238);
+    margin: 10px 40px 0 40px;
+    padding: 20px;
+    background-color: white;
+
+}
+.eligibility ul li{
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.documents{
+    border: 2px solid rgb(140, 226, 238);
+    margin: 10px 40px 0 40px;
+    padding: 20px;
+    background-color: white;
+
+}
+.documents ul li{
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.check{
+    border: 2px solid rgb(140, 226, 238);
+    margin: 10px 40px 0 40px;
+    padding: 20px;
+    background-color: white;   
+}
+.check h2{
+    text-align: center;
+}
+.check ul li{
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+

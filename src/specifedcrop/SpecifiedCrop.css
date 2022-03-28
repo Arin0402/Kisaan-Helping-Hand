@@ -1,0 +1,42 @@
+.Specified_crop {
+  display: flex;
+}
+.spe_image {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 5px solid pink;
+  margin-top: 20px;
+}
+.left_part {
+  width: 100%;
+  background-color: lightyellow;
+}
+.right_part {
+  background-color: lightyellow;
+}
+.detail_section {
+  background-color: #bcebd7;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.detail_section_1 {
+  background-color: #bcebd7;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px;
+}
+.detail_title {
+  background-color: #006634;
+  color: #f0f0f0;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px;
+}
+.Detail_box {
+  margin: 20px;
+}

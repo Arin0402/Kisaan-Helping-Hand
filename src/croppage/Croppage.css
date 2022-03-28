@@ -1,0 +1,54 @@
+.croppage {
+  margin: 50px;
+  background-color: red;
+}
+.agri_section {
+  background-color: #bcebd7;
+  border: solid 2px green;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.crop_block {
+  /* width: 400px !important; */
+  padding: 4px;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+}
+.crop_image {
+  width: 200px;
+  border-radius: 5px;
+}
+.crop_header {
+  background-color: #006634;
+  color: #f0f0f0;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  text-align: left;
+}
+.agriculture {
+  padding: 10px;
+  margin-left: 30px;
+}
+.crop_name {
+  color: #272727;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.crop_type {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 10px;
+  color: white;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #272727;
+}

@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainborder{
+    border: 10px solid orange;
+}
+
+.heading{
+    text-align: center;
+}
+
+.lists{
+    padding: 10px;
+}
+
+.lists ul li{
+    margin-left: 20px;
+}
+
+.imagesblock img{
+    height: 200px;
+    border-radius: 50%;
+}
+
+.block1image{
+    display: flex;
+    justify-content: space-around;
+}
+.block2image{
+    text-align: center;
+}
+
+.heading2{
+    text-align: center;
+    
+}
+
+.list2 ul li{
+    margin-left: 30px;
+}
+
+.imageblock3{
+    display: flex;
+    justify-content: space-around;
+}
+.imageblock3 img{
+    height: 200px;
+    border-radius: 50%;
+}

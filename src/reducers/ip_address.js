@@ -1,0 +1,7 @@
+const ip = ''
+export const current_ip = (state=initalcurrentcrop, action) => {
+    switch (action.type) {
+        case "SETCURRENTCROP" : return action.currentcrop
+        default : return state
+    }
+}
