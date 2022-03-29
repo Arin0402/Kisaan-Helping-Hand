@@ -1,0 +1,33 @@
+body{
+    display: grid;
+    row-gap : 20px;
+}
+
+.infoblock{
+    display : grid;
+    grid-template-columns : 20% 30% 
+}
+
+.submit-button{
+    height: 50px;
+    width: 100px;
+}
+
+textarea{
+    height : 100px;
+}
+
+.disease-box{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.disease-box > div > div{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#imageuploader{
+    height: 50px;
+    width: 100px;
+}

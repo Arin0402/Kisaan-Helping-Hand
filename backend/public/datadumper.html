@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="datadumper.css">
+    <title>Data Dumper</title>
+</head>
+
+<body>
+    <div class="infoblock">
+        <label>CropName</label>
+        <input type="text" id="cropName">
+    </div>
+    <div class="infoblock">
+        <label>Crop ID</label>
+        <input type="text" id="crop_id">
+    </div>
+    <div class="infoblock">
+        <label>Language</label>
+        <input type="text" id="language">
+    </div>
+    <div class="infoblock">
+        <label>District</label>
+        <div>
+            <textarea id="districtsinput"></textarea>
+            <button id="districts">Add District</button>
+        </div>
+    </div>
+    <div class="infoblock">
+        <label>Description</label>
+        <textarea id="description"></textarea>
+    </div>
+    <div class="infoblock">
+        <label>Type of Crop</label>
+        <textarea id="typeofcrop"></textarea>
+    </div>
+    <div class="infoblock">
+        <label>Seed Rate</label>
+        <textarea id="seedrate"></textarea>
+    </div>
+    <div class="infoblock">
+        <label>Seeds sowing period</label>
+        <textarea id="seedsowingperiod"></textarea>
+    </div>
+    <div class="infoblock">
+        <label>Crop cultivation period</label>
+        <textarea id="cropcultivationperiod"></textarea>
+    </div>
+    <div class="infoblock">
+        <label>variety</label>
+        <div>
+            <input type="text" id="varietyinput">
+            <button id="variety">Add varity</button>
+        </div>
+    </div>
+    <div class="infoblock">
+        <label>climate</label>
+        <textarea id="climate"></textarea>
+    </div>
+    <div class="infoblock">
+        <label>Temprature</label>
+        <textarea id="temperature"></textarea>
+    </div>
+    <div class="infoblock">
+        <label>Soil Description</label>
+        <textarea id="soildescription"></textarea>
+    </div>
+    <div class="infoblock">
+        <label>Soil ph</label>
+        <textarea id="soilph"></textarea>
+    </div>
+    <div class="infoblock">
+        <label>Seed Processing</label>
+        <div>
+            <textarea id="seedprocessinginput"></textarea>
+            <button id="seedprocessing">Add seed processing step</button>
+        </div>
+    </div>
+    <div class="infoblock">
+        <label>Land Description</label>
+        <textarea id="landdescription"></textarea>
+    </div>
+    <div class="infoblock">
+        <label>Perpration Of Field</label>
+        <div>
+            <textarea id="perprationoffieldinput"></textarea>
+            <button id="perprationoffield">Add prepration step</button>
+        </div>
+    </div>
+    <div class="infoblock">
+        <label>Fertilizer</label>
+        <div>
+            <textarea id="fertilizerinput"></textarea>
+            <button id="fertilizer">Add Fertilizer</button>
+        </div>
+    </div>
+    <div class="infoblock">
+        <label>Irrigation</label>
+        <textarea id="irrgation"></textarea>
+    </div>
+    <div class="infoblock">
+        <label>Disease</label>
+        <div class="disease-box">
+            <div>
+                <div>
+                    <label>Disease Name : </label>
+                    <textarea id="disease-name"></textarea>
+                </div>
+                <div>
+                    <label>Disease Description : </label>
+                    <textarea id="disease-description"></textarea>
+                </div>
+                <div>
+                    <label>Disease managment : </label>
+                    <textarea id="disease-managment"></textarea>
+                    <button id="disease-managment-button">Add to disease managment</button>
+                </div>
+            </div>
+            <button id="disease-button">Add Disease</button>
+        </div>
+    </div>
+    <div class="infoblock">
+        <label>Harvesting</label>
+        <div>
+            <textarea id="harvestinginput"></textarea>
+            <button id="harvesting">Add harvesting method</button>
+        </div>
+    </div>
+    <div class="infoblock">
+        <label>plant Protection</label>
+        <div>
+            <textarea id="plantprotectioninput"></textarea>
+            <button id="plantprotection">Add plant protection</button>
+        </div>
+    </div>
+    <div class="infoblock">
+        <label>Storage</label>
+        <textarea id="storage"></textarea>
+    </div>
+    <div class="infoblock">
+        <label>Extra Info</label>
+        <div id="extrainfo">
+            <textarea id="extrainfoinput"></textarea>
+            <button id="extrainfo">Add Info</button>
+        </div>
+    </div>
+    <button class="submit-button">Submit Data</button>
+    <h1>Image Uploader</h1>
+    <input type="file" id="imageupload">
+    <button id="bannerbutton">Set as banner</button>
+    <button id="imageuploader">Upload Image</button>
+    <script src="dumper.js"></script>
+</body>
+
+</html>
