@@ -9,7 +9,7 @@ import { Animalhusbandary } from "./animalhusbandary/Animalhusbandary.js"
 import { Specifiedcrop } from "./specifedcrop/Specifiedcrop.js";
 import Govermentschemes from "./governmentschemes/Govermentschemes.js";
 // import { Kissancreditcard } from "./kissancreditcard/Kissancreditcard.js";
-import { Kissancreditcard } from "./kissancreditcard/fertilizercal_aar.js";
+import { Kissancreditcard } from "./Fertilizer calculator/fertilizercal_aar.js";
 import { Blog } from "./blog/Blog.js";
 import { Employment } from "./Employment/Employment.js";
 import Login from "./login/Login.js"
@@ -19,6 +19,7 @@ import NewTech from "./new_technology/NewTech.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import store from "./store.js";
 import { Provider } from "react-redux"
+import { Dashboard } from "./Dashboard/Dashboard.js";
 
 function App() {
   return (
@@ -43,10 +44,10 @@ function App() {
             <Route path="/kissancreditcard">
               <Kissancreditcard />
             </Route>
-            <Route path="/crop">
+            <Route path="/crop/:district">
               <Croppage />
             </Route>
-            <Route path="/specifedcrop">
+            <Route path="/specifedcrop/:cropid">
               <Specifiedcrop />
             </Route>
             <Route path="/blog">
@@ -64,7 +65,9 @@ function App() {
             <Route path="/employment">
               <Employment />
             </Route>
-
+            <Router to="/dashboard/*">
+                <Dashboard />
+            </Router>
           </Switch>
         </Router>
       </Provider>

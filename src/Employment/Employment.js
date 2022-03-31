@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from "react-redux"
 import "../Employment/Employement.css"
 export const Employment = () => {
 
     const [users, setusers] = useState([])
-    console.log(users)
-
+    const ipaddr = useSelector(state => state.ipreducer)
     const getuser = async () => {
         console.log("hello")
-        var resp = await fetch("http://192.168.185.14:4000/farmer/allfarmer")
+        var resp = await fetch(`http://${ipaddr}/farmer/allfarmer`)
             .then(response => response.json())
             .then(json => json)
         setusers(resp)
@@ -24,7 +24,7 @@ export const Employment = () => {
             {users.map((element, index) => (
                         
                 <div key={index} className= "tech_comp" >
-                    <img src={`http://192.168.185.14:4000/image/getimage/user/${element.images.image_id}`} className="tech_image"/>
+                    <img src={`http://${ipaddr}/image/getimage/user/${element.images.image_id}`} className="tech_image"/>
                     <div className='emp_left' >
                         <div > <h3 >Name :</h3>  {element.farmername}</div>
                         <div > <h3>Email :</h3>{element.email}</div>

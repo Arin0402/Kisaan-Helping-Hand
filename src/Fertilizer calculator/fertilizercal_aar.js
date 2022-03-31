@@ -27,7 +27,7 @@ export const Kissancreditcard = () => {
     const [fertilizerlist, setfertilizerlist] = useState([])
     const [total_data , settotal_data] = useState([])
     const [cal_done, setcal_done] = useState(false)
-
+    const ipaddr = useSelector(state => state.ipreducer)
     const innerhtml = useSelector(state => state.innerhtmlcontroller)
 
     const language = useSelector(state => state.languagereducer)
@@ -42,7 +42,7 @@ export const Kissancreditcard = () => {
 
         console.log("dasf")
         console.log(language)
-        var resp = await fetch("http://192.168.185.14:4000/crop/filter", {
+        var resp = await fetch(`http://${ipaddr}/crop/filter`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"

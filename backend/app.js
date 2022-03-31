@@ -86,7 +86,7 @@ app.post("/convertintojson", bodyparser.urlencoded({ extended: true }), (req, re
     res.json(new Jsonengine(req.body).getConvertedData())
 })
 
-app.listen(process.env.PORT, "192.168.106.14", (err) => {
+app.listen(process.env.PORT, "192.168.250.14", (err) => {
     console.log(`service started at ${process.env.PORT}`)
     if (err) {
         throw err

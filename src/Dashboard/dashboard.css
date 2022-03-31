@@ -1,0 +1,40 @@
+.banner{
+    background-color: green;
+    height: 40vh;
+    position: relative;
+}
+
+.user__image{
+    border-radius: 100%;
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    top : 46%;
+    left: 50px;
+}
+
+.username{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: 10vh;
+    width: 30vw;
+    color: white;
+    text-transform: uppercase;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.empty_username{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: 10vh;
+    width: 20vw;
+    background-color: rgba(128, 128, 128, 0.712);
+    border-radius: 10px;
+}
+
+.dashboard__userinfo-label{
+    margin-top: 100px;
+}

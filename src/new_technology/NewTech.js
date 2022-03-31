@@ -14,6 +14,7 @@ import { languageaction, innerhtmlsetter } from "../actions/languageaction.js"
 
 function NewTech() {
 
+    const ipaddr = useSelector(state => state.ipreducer)
     const language = useSelector(state => state.languagereducer)
     const image_array = [img_1, img_2, img_3, img_4, img_5]
     console.log(language)

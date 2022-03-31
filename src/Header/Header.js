@@ -17,7 +17,9 @@ import { languageaction, innerhtmlsetter } from "../actions/languageaction.js"
 import { setcrop } from '../actions/cropsaction.js';
 import { currentcropsetter } from "../actions/currentcropaction.js"
 import { cropnotfoundfalse, cropnotfoundtrue } from '../actions/cropnotfoundaction';
-// import { Loginusericon } from "./loginusericon/Loginusericon.js"
+import { Loginusericon } from "../loginusericon/Loginusericon.js"
+import { showuseraction } from '../actions/showuseraction';
+import { loginaction } from "../actions/loginuseraction.js"
 
 
 function Header() {
@@ -32,17 +34,16 @@ function Header() {
     }
   };
 
+  const ipaddr = useSelector(state => state.ipreducer)
+  const user = useSelector(state => state.loginuserreducer)
   const showloginuser = useSelector(state => state.setshowuser)
-  const loginuser = useSelector(state => state.loginuserreducer)
   const language = useSelector(state => state.languagereducer)
-  const valid_user = useSelector(state => state.loginuserreducer)
   const innerhtml = useSelector(state => state.innerhtmlcontroller)
   const district = useSelector(state => state.districtreducer)
   const currentcrop = useSelector(state => state.currentcropreducer)
   const crop = useSelector(state => state.cropreducer)
   const dispatch = useDispatch()
 
-  console.log(valid_user)
   const theme = createTheme({
 
     palette: {
@@ -58,12 +59,52 @@ function Header() {
     'English',
     'Hindi',
     'Garhwali'
-    
+
   ];
+
+  async function scriptonreload() {
+    var makearequest = false
+    document.cookie.split("; ").map((element) => {
+      var temp = element.split("=")
+      if (temp[0] === 'valtoken') {
+        makearequest = true
+      }
+    })
+    if (user === null && makearequest) {
+      var resp = await fetch(`/farmer/login`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ phone: -1, password: "0" })
+      })
+        .then(response => response.json())
+        .then(json => json)
+        .catch(err => console.log(err))
+      if (resp.isloggedin) {
+        dispatch(loginaction(resp))
+        dispatch(showuseraction())
+      }
+      else {
+      }
+    }
+    if (Object.keys(innerhtml).length === 0) {
+      var recivedinnerhtml = await fetch(`http://${ipaddr}/getinnerhtmldata`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ language: "English" })
+      })
+        .then(response => response.json())
+        .then(json => json)
+      dispatch(innerhtmlsetter(JSON.parse(recivedinnerhtml.innerhtmldata)))
+    }
+  }
 
   useEffect(async () => {
     if (crop !== '') {
-      var resp = await fetch("http://192.168.185.14:4000/crop/filter", {
+      var resp = await fetch(`http://${ipaddr}/crop/filter`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'
@@ -74,11 +115,9 @@ function Header() {
         .then(json => json)
       dispatch(setcrop(resp))
     }
-    console.log(currentcrop)
     if (currentcrop !== "") {
-      
-      console.log(language)
-      var resp = await fetch("http://192.168.185.14:4000/crop/filtercropid", {
+
+      var resp = await fetch(`http://${ipaddr}/crop/filtercropid`, {
         method: "post",
         headers: {
           'Content-Type': 'application/json'
@@ -95,15 +134,16 @@ function Header() {
         dispatch(cropnotfoundtrue())
       }
     }
+    scriptonreload()
   }, [language])
 
   const handleChange = async (event) => {
     var eveval = event.target.value
-    
+
     setdisp_lang(event.target.value)
 
     dispatch(languageaction(eveval.toUpperCase()));
-    var recivedinnerhtml = await fetch("http://192.168.185.14:4000/getinnerhtmldata", {
+    var recivedinnerhtml = await fetch(`http://${ipaddr}/getinnerhtmldata`, {
       method: "post",
       headers: {
         "Content-Type": "application/json"
@@ -112,14 +152,12 @@ function Header() {
     })
       .then(response => response.json())
       .then(json => json)
-    console.log()
     if (recivedinnerhtml !== null) {
       dispatch(innerhtmlsetter(JSON.parse(recivedinnerhtml.innerhtmldata)))
     }
   };
 
-  // console.log(valid_user.images.image_id)
-  const [disp_lang , setdisp_lang] = useState('English');
+  const [disp_lang, setdisp_lang] = useState('English');
 
 
   return (
@@ -129,62 +167,62 @@ function Header() {
 
         <div className='language_select'>
           {/* <FormControl sx={{ m: 1, minWidth: 120 }}> */}
-            <Select
-              value = {disp_lang}              
-              onChange={handleChange}              
-              displayEmpty
+          <Select
+            value={disp_lang}
+            onChange={handleChange}
+            displayEmpty
 
-              inputProps={{ 'aria-label': 'Without label' }}
-              style ={{ backgroundColor : "white", height : "30px"}}
-            >
+            inputProps={{ 'aria-label': 'Without label' }}
+            style={{ backgroundColor: "white", height: "30px" }}
+          >
 
-              {/* <MenuItem disabled value=""><em> Select language</em></MenuItem> */}
+            {/* <MenuItem disabled value=""><em> Select language</em></MenuItem> */}
 
-              {languages.map((name) => {
-                return <MenuItem
-                  key={name}
-                  value={name}
-                  style={getStyles(name, "Hindi", theme)}
-                >
-                  {name}
-                </MenuItem>
+            {languages.map((name) => {
+              return <MenuItem
+                key={name}
+                value={name}
+                style={getStyles(name, "Hindi", theme)}
+              >
+                {name}
+              </MenuItem>
 
-              })}
-            </Select>
+            })}
+          </Select>
 
           {/* </FormControl> */}
         </div>
 
         {/* {valid_user.length == 0  ? */}
-        <div className='login_buttons'>
-            <ThemeProvider theme={theme}>
-                <Button onClick={()=>navigate("Register")} variant='outlined' color="neutral" style ={{float :"right" , marginLeft :"10px" , marginRight : "10px", marginTop :"20px" }}>{innerhtml.register}</Button>
-                <Button onClick={()=>navigate("Login")} variant='outlined' color="neutral"  style ={{float :"right" , marginLeft :"10px" , marginRight : "10px", marginTop :"20px" }}>{innerhtml.login}</Button>
-            </ThemeProvider>
-        </div>
-         {/* :
+        {!showloginuser ? <div className='login_buttons'>
+          <ThemeProvider theme={theme}>
+            <Button onClick={() => navigate("/Register")} variant='outlined' color="neutral" style={{ float: "right", marginLeft: "10px", marginRight: "10px", marginTop: "20px" }}>{innerhtml.register}</Button>
+            <Button onClick={() => navigate("/Login")} variant='outlined' color="neutral" style={{ float: "right", marginLeft: "10px", marginRight: "10px", marginTop: "20px" }}>{innerhtml.login}</Button>
+          </ThemeProvider>
+        </div> : <Loginusericon />}
+        {/* :
           <div className='login_buttons'>
-            <img src = {`http://192.168.185.14:4000/image/getimage/user/${valid_user.images.image_id}`}></img>
+            <img src = {`http://${ipaddr}/image/getimage/user/${valid_user.images.image_id}`}></img>
           </div> 
          }   */}
 
       </div>
       <div className='Homepage_lower_header'>
         <div className='Homepage_lower_header_sub_1'>
-          
-            <div className='Homepage_lower_header_tab' onClick={()=> navigate("/")}  >{innerhtml === {} ? null : innerhtml.home}</div>
-            <div className='Homepage_lower_header_tab' onClick={()=> navigate("/agriculture")} >{innerhtml === {} ? null : innerhtml.agriculture}</div>
-            <div className='Homepage_lower_header_tab' onClick={()=> navigate("/animalhusbandary")} >{innerhtml === {} ? null : innerhtml.animalhusbandary}</div>            
-            <div className='Homepage_lower_header_tab' onClick={()=> navigate("/governmentschemes")} >{innerhtml === {} ? null : innerhtml.governmentschemes}</div>
-            <div className='Homepage_lower_header_tab' onClick={()=> navigate("/newtechnology")} >{innerhtml === {} ? null : innerhtml.newfarmingtechnology }</div>
-            <div className='Homepage_lower_header_tab' onClick={()=> navigate("/kissancreditcard")} >{innerhtml === {} ? null : innerhtml.fertilizercalculator}</div>
-            <div className='Homepage_lower_header_tab' onClick={()=> navigate("/employment")} >{innerhtml === {} ? null : innerhtml.employment}</div>
-            <div className='Homepage_lower_header_tab' onClick={()=> navigate("/blog")} >{innerhtml === {} ? null : innerhtml.blog}</div>
-            
+
+          <div className='Homepage_lower_header_tab' onClick={() => navigate("/")}  >{innerhtml === {} ? null : innerhtml.home}</div>
+          <div className='Homepage_lower_header_tab' onClick={() => navigate("/agriculture")} >{innerhtml === {} ? null : innerhtml.agriculture}</div>
+          <div className='Homepage_lower_header_tab' onClick={() => navigate("/animalhusbandary")} >{innerhtml === {} ? null : innerhtml.animalhusbandary}</div>
+          <div className='Homepage_lower_header_tab' onClick={() => navigate("/governmentschemes")} >{innerhtml === {} ? null : innerhtml.governmentschemes}</div>
+          <div className='Homepage_lower_header_tab' onClick={() => navigate("/newtechnology")} >{innerhtml === {} ? null : innerhtml.newfarmingtechnology}</div>
+          <div className='Homepage_lower_header_tab' onClick={() => navigate("/kissancreditcard")} >{innerhtml === {} ? null : innerhtml.fertilizercalculator}</div>
+          <div className='Homepage_lower_header_tab' onClick={() => navigate("/employment")} >{innerhtml === {} ? null : innerhtml.employment}</div>
+          <div className='Homepage_lower_header_tab' onClick={() => navigate("/blog")} >{innerhtml === {} ? null : innerhtml.blog}</div>
+
         </div>
 
       </div>
-      
+
     </div>
   )
 }
