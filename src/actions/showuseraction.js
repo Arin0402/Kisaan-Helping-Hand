@@ -3,3 +3,9 @@ export const showuseraction = () => {
         type : "SETTOTRUE"
     } 
 }
+
+export const hideuseraction = () => {
+    return {
+        type : "SETTOFALSE"
+    }
+}

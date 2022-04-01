@@ -82,7 +82,7 @@
   /* color: grey; */
   color: #90b4f0;
   font-size: 45px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 .mobileNumber_error {
   color: red;
@@ -105,4 +105,20 @@
   display: flex;
   /* flex-wrap: wrap; */
   justify-content: space-between;
+}
+
+.errormsg{
+  font-weight: bold;
+  color: red;
+  font-size: 10px;
+  margin-bottom: 20px;
+}
+
+.otp__resend{
+  color: rgb(34, 131, 241);
+  cursor: pointer;
+}
+
+.otp__resend:active{
+  color: rgb(16, 65, 156);
 }

@@ -4,3 +4,9 @@ export const loginaction = (user) => {
         user : user
     }
 }
+
+export const logoutaction = () => {
+    return {
+        type : "SETLOGOUTUSER"
+    }
+}

@@ -111,7 +111,7 @@ function HomePage() {
   const [personName, setPersonName] = React.useState([]);
   const [district, setdistrict] = React.useState('');
   const innerhtml = useSelector(state => state.innerhtmlcontroller)
-
+  const ipaddr = useSelector(state => state.ipreducer)
   const theme = useTheme();
 
 
@@ -122,41 +122,12 @@ function HomePage() {
   async function getCrops() {
     if (district !== "") {
       dispatch(districtaction(district))
-      var resp = await fetch("http://192.168.185.14:4000/crop/filter", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ district: district, crop: "", language: language })
-      })
-        .then(response => response.json())
-        .then(json => json)
-      dispatch(setcrop(resp))
-      history.push("/crop")
+      history.push(`/crop/${district}`)
     }
   }
-  
-  async function getfirstinnerhtml(){
-    
-    if(Object.keys(innerhtml).length === 0){
-      var recivedinnerhtml = await fetch("http://192.168.185.14:4000/getinnerhtmldata", {
-        method : "post",
-        headers : {
-          "Content-Type" : "application/json",
-        },
-        body : JSON.stringify({language : "English"})
-      })
-      .then(response => response.json())
-      .then(json => json)
-      dispatch(innerhtmlsetter(JSON.parse(recivedinnerhtml.innerhtmldata)))
-    }
-  }
-
   
   return (
-    <div onLoad={() => {
-      getfirstinnerhtml()
-    }}>
+    <div>
 
       <div className='HomepageBackgroundImage'>
 

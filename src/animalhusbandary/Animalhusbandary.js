@@ -10,6 +10,7 @@ import { innerhtmlsetter } from "../actions/languageaction.js"
 export const Animalhusbandary = () => {
 
   const history = useHistory()    
+  const ipaddr = useSelector(state => state.ipreducer)
   // const dispatch = useDispatch()
   // const crop = useSelector(state => state.cropreducer)
   // const currentcrop = useSelector(state => state.currentcropreducer)
@@ -28,7 +29,7 @@ export const Animalhusbandary = () => {
   const [crop,setcrop] = useState([])
   async function getCrops() {
     
-    var resp = await fetch("http://192.168.185.14:4000/husbandry/gethusbandry", {
+    var resp = await fetch(`http://${ipaddr}/husbandry/gethusbandry`, {
       method: "post",
       headers: {
         "Content-Type": "application/json"
@@ -70,7 +71,7 @@ export const Animalhusbandary = () => {
                     }                    
                 }>
                 {/* <div> */}
-                    <img src={`http://192.168.185.14:4000/image/getimage/husbandry/${element.husbandary_image}`} className="crop_image" cropindex={index} />
+                    <img src={`http://${ipaddr}/image/getimage/husbandry/${element.husbandary_image}`} className="crop_image" cropindex={index} />
                     <div className='crop_name'>{element.husbandary_name}</div>
                     {/* <div className='crop_type' >{element.typeofcrop}</div> */}
                 </div>

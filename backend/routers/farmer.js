@@ -19,32 +19,65 @@ function generateotp() {
     return h
 }
 
-farmerrouter.post('/login', bodyparser.json(), cookieParser(), async (req, res) => {
-    console.log("login request")
+// farmerrouter.get("/getuser", bodyparser.json(), cookieParser(), validjwttoken, authenticuser, async (req, res) => {
+//     try {
+
+//         else {
+//             res.json({ isloggedin: false })
+//         }
+//     }
+//     catch (err) {
+//         console.log(err)
+//         res.json({ isloggedin: false })
+//     }
+// })
+
+farmerrouter.post('/login', bodyparser.json(), cookieParser(), validjwttoken, authenticuser, async (req, res) => {
     try {
-        var farmer = await farmermodel.findOne({
-            phone : req.body.phone,
-            password : req.body.password
-        })
-        if (farmer !== null) {
-            var otp = generateotp()
-            var resp = await client.messages
-                .create({
-                    body: `${otp}`,
-                    from: '+15673201074',
-                    to: `+91${farmer.phone}`
-                })
-                var token = jsonwebtoken.sign(req.body, process.env.SECRETKEY)
-            farmer.currentotp = otp
-            farmer.authtokens.push(token)
-            farmer = await farmer.save()
-            res.cookie("valtoken", token, { expires: new Date(Date.now() + 1800000000) })
-            res.json({isvalid : true})
-            // res.send("<script>document.cookie = 'username=aryan'</script>")
+        if (req.isvaliduser) {
+            var user = {
+                images: req.user.images,
+                farmer_id: req.user.farmer_id,
+                username: req.user.farmername,
+                phone: req.user.phone,
+                email: req.user.email,
+                address: req.user.address,
+                adharcard: req.user.adharcard,
+                district: req.user.district,
+                isloggedin: true
+            }
+            res.json(user)
         }
         else {
-            res.json({isvalid : false})
-            // res.send("<script>document.cookie = 'username=aryan'</script>")
+            if (req.body.phone === -1 && req.body.password === 0) {
+                res.json({ isloggedin: false })
+            }
+            else {
+                var farmer = await farmermodel.findOne({
+                    phone: req.body.phone,
+                    password: req.body.password
+                })
+                if (farmer !== null) {
+                    var otp = generateotp()
+                    var resp = await client.messages
+                        .create({
+                            body: `${otp}`,
+                            from: '+15673201074',
+                            to: `+91${farmer.phone}`
+                        })
+                    var token = jsonwebtoken.sign(req.body, process.env.SECRETKEY)
+                    farmer.currentotp = otp
+                    farmer.authtokens.push(token)
+                    farmer = await farmer.save()
+                    res.cookie("valtoken", token, { expires: new Date(Date.now() + 1800000000) })
+                    res.json({ isvalid: true })
+                    // res.send("<script>document.cookie = 'username=aryan'</script>")
+                }
+                else {
+                    res.json({ isvalid: false })
+                    // res.send("<script>document.cookie = 'username=aryan'</script>")
+                }
+            }
         }
     }
     catch (err) {
@@ -52,33 +85,6 @@ farmerrouter.post('/login', bodyparser.json(), cookieParser(), async (req, res) 
         res.status(505).sendFile(path.resolve(path.resolve() + "./public/505error.html"))
     }
 })
-
-// farmerrouter.post("/login", bodyparser.json(), cookieParser(), async (req, res) => {
-//     try {
-//         console.log("sdfghkjlkfdsdfhfhkjlkhgfdsdfhgjhk")
-//         var resp = await farmermodel.find({
-//             phone: req.body.phone,
-//             password: req.body.password
-//         })
-//         // console.log(resp)
-//         if (resp.length !== 0) {
-//             res.cookie("asd", "asdfgh")
-//             res.header({
-//                 "Access-Control-Allow-Headers": "*",
-//                 "Access-Control-Allow-Methods": "*",
-//                 "Access-Control-Allow-Origin": "*"
-//             })
-//             res.send(resp)
-//         }
-//         else {
-//             res.cookie("asd", "asdfgh")
-//             res.json({ "h": "v" })
-//         }
-//     }
-//     catch (err) {
-//         console.log(err)
-//     }
-// })
 
 farmerrouter.post("/namecheck", bodyparser.json(), async (req, res) => {
     try {
@@ -97,17 +103,18 @@ farmerrouter.post("/namecheck", bodyparser.json(), async (req, res) => {
 })
 
 farmerrouter.post("/register", bodyparser.json(), async (req, res) => {
-    console.log("hello")
-    console.log(req.body)
     var farmer = await farmermodel({
         username: req.body.username,
         farmer_id: req.body.farmerid,
         farmername: req.body.farmername,
         phone: req.body.phone,
-        district: req.body.district,
         email: req.body.email,
         password: req.body.password,
-        address: req.body.address,
+        address: {
+            city : req.body.address,
+            village : req.body.village,
+            district : req.body.district
+        },
         adharcard: req.body.adharcard,
         images: {
             image_id: req.body.image_id,
@@ -118,18 +125,30 @@ farmerrouter.post("/register", bodyparser.json(), async (req, res) => {
 })
 
 farmerrouter.post("/otpauth", bodyparser.json(), cookieParser(), validjwttoken, authenticuser, async (req, res) => {
-    console.log("request for otp")
     try {
         if (req.isvaliduser) {
-            if (req.body.otp === req.user.currentotp) {
+            if (req.body.otp == req.user.currentotp) {
                 req.user.currentotp = -1
                 req.user.isloggedin = true
                 req.user = await req.user.save()
-                res.json(req.user)
+                var user = {
+                    images: req.user.images,
+                    farmer_id: req.user.farmer_id,
+                    username: req.user.farmername,
+                    phone: req.user.phone,
+                    email: req.user.email,
+                    address: req.user.address,
+                    adharcard: req.user.adharcard,
+                    district: req.user.district,
+                    isloggedin: true
+                }
+                res.json(user)
             }
-            else if (req.user.currentotp === -1) {
-                console.log("sdfjds")
-                res.json(req.user)
+            else if (req.user.currentotp === -1 && req.user.isloggedin) {
+                res.json({ isloggedin: true })
+            }
+            else if (req.user.currentotp === -1 && !req.user.isloggedin) {
+                req.json({ isloggedin: false })
             }
             else {
                 console.log("notcorrect otp")
@@ -160,10 +179,10 @@ farmerrouter.get("/resendopt", bodyparser.json(), cookieParser(), validjwttoken,
                     from: '+15673201074',
                     to: `+91${req.user.phone}`
                 })
-            res.json("otp resended")
+            res.json({resendedotp : true})
         }
         else {
-            res.json("invalid user")
+            res.json({resendedotp : false})
         }
     }
     catch (err) {
@@ -225,7 +244,7 @@ farmerrouter.post("/changepassword", bodyparser.json(), cookieParser(), async (r
 })
 
 // change the loggedin field to false
-farmerrouter.post("/logout", bodyparser.json(), cookieParser(), validjwttoken, authenticuser, async (req, res) => {
+farmerrouter.get("/logout", bodyparser.json(), cookieParser(), validjwttoken, authenticuser, async (req, res) => {
     try {
         if (req.isvaliduser) {
             req.user.isloggedin = false
@@ -236,7 +255,8 @@ farmerrouter.post("/logout", bodyparser.json(), cookieParser(), validjwttoken, a
                 }
             }
             req.user = await req.user.save()
-            res.json(req.user)
+            res.clearCookie('valtoken')
+            res.json({ isloggedin: false })
         }
         else {
             res.json("Invalid user")

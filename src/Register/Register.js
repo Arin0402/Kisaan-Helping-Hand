@@ -35,6 +35,7 @@ function Register() {
     //   }));
     
     // const classes = useStyles();
+    const ipaddr = useSelector(state => state.ipreducer)
     const innerhtml = useSelector(state => state.innerhtmlcontroller)
     const [name,setname] = useState('')
     const [mobileNumber, setmob_number] = useState('')
@@ -49,7 +50,7 @@ function Register() {
     const register_user = async (id1)=>{
         console.log("inside register")
         var farmer_id = generateid()
-        var resp = await fetch(`http://192.168.185.14:4000/farmer/register`, {
+        var resp = await fetch(`http://${ipaddr}/farmer/register`, {
             method : "post",
             headers : {
                 "Content-Type" : "application/json"
@@ -186,7 +187,7 @@ function Register() {
         image.append("image", document.getElementById("userimage").files[0])
         image.append("imageid", imageid)
         image.append("catagory", "user")
-        var resp = await fetch(`http://192.168.185.14:4000/image/addimage/user/${imageid}`, {
+        var resp = await fetch(`http://${ipaddr}/image/addimage/user/${imageid}`, {
             method : "post",
             body : image
         })

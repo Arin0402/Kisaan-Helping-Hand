@@ -11,6 +11,7 @@ import { blogappender } from '../actions/blogaction'
 export const Blog = () => {
 
     const dispatch = useDispatch()
+    const ipaddr = useSelector(state => state.ipreducer)
     const [blogpagenumber, setblogpagenumber] = useState(1)
     var blogs = useSelector(state => state.blogreducer)
     const [showblogs, setshowblogs] = useState(true) // tell wheater to show the blog or not
@@ -19,7 +20,7 @@ export const Blog = () => {
 
         console.log("inside")
 
-        var resp = await fetch(`http://192.168.185.14:4000/blog/getblog/${blogpagenumber}`)
+        var resp = await fetch(`http://${ipaddr}/blog/getblog/${blogpagenumber}`)
             .then(response => response.json())
             .then(json => json)
         if (resp.length !== 0) {
@@ -47,7 +48,7 @@ export const Blog = () => {
                 <div  className="card_1">
                     
                     <div className="banner_blog_image_1">
-                        <img className="bann_img_1" src={`http://192.168.185.14:4000/image/getimage/blog_banner/${element.blog_banner_image}`}></img>
+                        <img className="bann_img_1" src={`http://${ipaddr}/image/getimage/blog_banner/${element.blog_banner_image}`}></img>
                     </div>
                     
                     <div className="heading_1">
@@ -56,7 +57,7 @@ export const Blog = () => {
 
                     <div className="user_area_1">
                         {element.blog_owner_image !== undefined ? <div className="image_1">
-                            <img  src={`http://192.168.185.14:4000/image/getimage/user/${element.blog_owner_image}`} />
+                            <img  src={`http://${ipaddr}/image/getimage/user/${element.blog_owner_image}`} />
                         </div> : <img src={userpicture} />}
                         <h6>{element.blog_owner_name}</h6>
                         <div className="date_blog_1">

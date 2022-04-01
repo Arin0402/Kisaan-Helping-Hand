@@ -1,0 +1,38 @@
+.loginusericon{
+    color: white;
+}
+
+.loginusericon__image{
+    cursor: pointer;
+    position: relative;
+    bottom: -10px;
+    right: 20px;
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+}
+
+.profiledetail__panel_container{
+    z-index: 10;
+    position: relative;
+}
+
+.profiledetail__panel{
+    box-shadow: 0px 0px 20px gray;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    position: absolute;
+    top: 10px;
+    left: -100px;
+}
+
+.profiledetail__panel > div{
+    border-radius: 10px;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+.profiledetail__panel > div:hover{
+    background-color: rgb(224, 222, 222);
+}

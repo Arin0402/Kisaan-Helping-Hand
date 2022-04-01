@@ -27,11 +27,6 @@ const farmerSchema = mongoose.Schema({
         type : String,
         // required : true
     },
-    address : {
-        type : String,
-        // required : true,
-        // lowercase : true
-    },
     rating : {
         type : Number,
         max : 5,
@@ -63,11 +58,20 @@ const farmerSchema = mongoose.Schema({
             // required : true
         },
         image_catagory : {
-            type : String
+            type : String,
+            default : "user"
         }
     },
-    district : {
-        type : String
+    address : {
+        city : {
+            type : String
+        },
+        village : {
+            type : String,
+        }, 
+        district : {
+            type : String
+        }
     }
 })
 
