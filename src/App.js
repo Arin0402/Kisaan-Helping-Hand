@@ -9,12 +9,15 @@ import { Animalhusbandary } from "./animalhusbandary/Animalhusbandary.js"
 import { Specifiedcrop } from "./specifedcrop/Specifiedcrop.js";
 import Govermentschemes from "./governmentschemes/Govermentschemes.js";
 // import { Kissancreditcard } from "./kissancreditcard/Kissancreditcard.js";
-import { Kissancreditcard } from "./Fertilizer calculator/fertilizercal_aar.js";
+import FertilizerCalculator  from "./Fertilizer calculator/fertilizercal_aar.js";
 import { Blog } from "./blog/Blog.js";
 import { Employment } from "./Employment/Employment.js";
 import Login from "./login/Login.js"
 import Register from "./Register/Register.js"
+import Fertilizers_page from "./Fertilizer calculator/Fertilizers_page.js";
 import NewTech from "./new_technology/NewTech.js";
+import Nutrients_page from "./Fertilizer calculator/Nutrients_page.js";
+import FertilizerRequired from "./Fertilizer calculator/Fertilizer_required.js";
 // dependencies
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import store from "./store.js";
@@ -41,8 +44,11 @@ function App() {
             <Route path="/governmentschemes">
               <Govermentschemes />
             </Route>
-            <Route path="/kissancreditcard">
-              <Kissancreditcard />
+            <Route path="/FertilizerCalculator">
+              <FertilizerCalculator />
+            </Route>
+            <Route path = "/FertilizersPage">
+              <Fertilizers_page />
             </Route>
             <Route path="/crop/:district">
               <Croppage />
@@ -55,6 +61,12 @@ function App() {
             </Route>
             <Route path="/Login">
               <Login />
+            </Route>
+            <Route path="/NutrientsDetails">
+              <Nutrients_page />
+            </Route>
+            <Route path="/FertilizerRequired">
+              <FertilizerRequired />
             </Route>
             <Route path ="/newtechnology">
               <NewTech />

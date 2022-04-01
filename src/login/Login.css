@@ -63,6 +63,19 @@
   margin-top: auto;
   margin-bottom: auto;
   border-radius: 15px;
+  
+}
+.form_man_2 {
+  box-shadow: 0 2px 5px 1px rgb(64 60 67 / 19%);
+  background: rgba(255, 255, 255, 0.9);
+  /* margin-top: 20px; */
+  width: 900px !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 15px;
+  
 }
 .form {
   position: absolute;

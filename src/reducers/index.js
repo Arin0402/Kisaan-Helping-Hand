@@ -8,18 +8,24 @@ import { blogreducer } from "./blogreducer";
 import { loginuserreducer } from "./loginuserreducer";
 import { setshowuser } from "./showuserreducer";
 import { ipreducer } from "./ipaddressreducer";
+import {NutrientsReducer, Area_type_reducer, land_area_reducer, fertilizer_reducer} from "../reducers/Nutrients_reducer.js"
 
 const rootreducer = combineReducers({
-    languagereducer : languagereducer,
-    innerhtmlcontroller : innerhtmlcontroller,
-    cropreducer : cropreducer,
-    districtreducer : districtreducer,
-    currentcropreducer : currentcropreducer, // currentcropsetter(crop)
-    setcropnotfound : setcropnotfound,
-    blogreducer : blogreducer,
-    loginuserreducer : loginuserreducer, // loginaction(user) , logoutaction()
-    setshowuser : setshowuser, // showuseraction(), hideuseraction()
-    ipreducer : ipreducer // ipsetaction(ip) , setlocalhost()
+    languagereducer,
+    innerhtmlcontroller,
+    cropreducer,
+    districtreducer,
+    currentcropreducer, // currentcropsetter(crop)
+    setcropnotfound,
+    blogreducer,
+    loginuserreducer, // loginaction(user) , logoutaction()
+    setshowuser, // showuseraction(), hideuseraction()
+    ipreducer, // ipsetaction(ip) , setlocalhost()
+    NutrientsReducer,
+    Area_type_reducer,
+    land_area_reducer,
+    fertilizer_reducer
+
 })
 
 export default rootreducer
