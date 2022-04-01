@@ -32,12 +32,14 @@ function NewTech() {
         }
     }, [language])
     
+    console.log(data)
     return (
         <div>            
 
             {data.map((element, index) => (
                         
                 <div key={index} className= "tech_comp" >
+                    
                     <img className='tech_image' src ={image_array[index]} ></img>
                     <div className='tech_right'>
                         <div className='tech_title'>{element.title}</div>                
